@@ -6,5 +6,7 @@
     "express": "3.0.0alpha4",
     "jade": "*",
     "nib": "*",
-    "cheerio":"0.15.0" }
+    "cheerio":"0.15.0",
+    "mongoose" : "*" 
+  }
 }
