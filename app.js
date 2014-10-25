@@ -2,7 +2,7 @@
  * * Module dependencies
  * */
 
-var config = require('config/development');
+var config = require('./config/development');
 
 var request = require('request');
 var cheerio = require('cheerio');
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var mongoose   = require('mongoose');
-mongoose.connect('config.db');
+mongoose.connect(config.db);
 
 
 app.set('views', __dirname + '/views') // sets dir

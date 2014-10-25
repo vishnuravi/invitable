@@ -1,3 +1,5 @@
-module.exports = {
-	db: "mongodb://localhost:27017/invitable"
-}
+var config = {}
+
+config.db = "mongodb://localhost:27017/invitable";
+
+module.exports = config;
