@@ -1,0 +1,10 @@
+{ "name": "invitable",
+  "version": "0.0.1",
+  "private": "false",
+  "license": "GPL-3",
+  "dependencies": {
+    "express": "3.0.0alpha4",
+    "jade": "*",
+    "nib": "*",
+    "cheerio":"0.15.0" }
+}
