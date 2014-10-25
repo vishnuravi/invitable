@@ -8,10 +8,9 @@ var request = require('request');
 var cheerio = require('cheerio');
 var express = require('express');
 var nib = require('nib');
-
+var invitable=require('./routes/invitableRoute.js');
 
 var app = express(); // sets up the server
-
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,6 +28,7 @@ app.use(express.logger('dev'))
 
 app.use(express.static(__dirname + '/public'))
 
+app.post('/invitables', invitable.create)
 
 app.get('/', function (req, res) {
   res.render('main',
