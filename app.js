@@ -2,6 +2,8 @@
  * * Module dependencies
  * */
 
+var config = require('config/development');
+
 var request = require('request');
 var cheerio = require('cheerio');
 var express = require('express');
@@ -10,8 +12,12 @@ var nib = require('nib');
 
 var app = express(); // sets up the server
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-
+var mongoose   = require('mongoose');
+mongoose.connect('config.db');
 
 
 app.set('views', __dirname + '/views') // sets dir
