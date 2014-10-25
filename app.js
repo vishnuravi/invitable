@@ -28,6 +28,8 @@ app.use(express.logger('dev'))
 
 app.use(express.static(__dirname + '/public'))
 
+app.get('/invitables', invitable.get)
+
 app.post('/invitables', invitable.create)
 
 app.get('/', function (req, res) {
