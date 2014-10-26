@@ -17,9 +17,7 @@ var session = require('express-session');
 
 var app = express(); // sets up the server
 
-mongoose.connect(config.db);
-
-require('./passport')(passport);
+mongoose.connect(config.db);;
 
 app.set('views', __dirname + '/views') // sets dir
 
@@ -32,17 +30,15 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//passport
+// setting up passport authentication
+require('./passport')(passport)
 app.use(session({ secret: 'invitable invitables'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
 require('./routes/routes')(app, passport);
 
 app.use(express.static(__dirname + '/public'))
 
-
-
-console.log("now running");
+console.log("invitable is now running");
 app.listen(3000)
