@@ -14,7 +14,8 @@ $ node app.js
 #API Endpoints
 | Route|Rquest Method  | Description |
 | ----|--------- | ------------- |
-| /foo|Post  | foo |
+| /invitables|Post | Create a new event |
+| /invitables|Get |Lists all invitables |
 
 
 #Contributing
@@ -22,6 +23,7 @@ Please submit a pull request on this page, we will then run your code and verify
 If you find an issue please create an issue (no matter how small you may think it is)!  
 - For API route creation assign issues to @frankcash or @vishnuravi
 - For Front-end issues please assign them to @aarohmankad or @cris1133
+- Select appropriate issue tag
 
 #LICENSE
 GPL-3
