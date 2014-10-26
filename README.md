@@ -11,6 +11,11 @@ Users with extra invites will then be allowed to give up their invites!
 $ npm install
 $ node app.js
 ```
+#API Endpoints
+| Route|Rquest Method  | Description |
+| ----|--------- | ------------- |
+| /foo|Post  | foo |
+
 
 #Contributing
 Please submit a pull request on this page, we will then run your code and verify it.  We will not merge in code that you license in a non-GPL compatible license.
