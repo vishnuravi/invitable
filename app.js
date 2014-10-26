@@ -16,6 +16,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var invitable=require('./routes/invitableRoute.js');
+var user=require('./routes/userRoute.js');
 
 var app = express(); // sets up the server
 
@@ -49,6 +50,8 @@ app.use(express.static(__dirname + '/public'))
 app.get('/invitables', invitable.get)
 
 app.post('/invitables', invitable.create)
+
+app.post('/users', user.create)
 
 app.get('/', function (req, res) {
   res.render('main',
