@@ -3,7 +3,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 var User = require('./routes/models/users');
-
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
@@ -75,7 +74,6 @@ module.exports = function(passport) {
 
     }));
 
-
     passport.use(new FacebookStrategy({
 
         clientID        : configAuth.facebookAuth.clientID,
@@ -96,12 +94,13 @@ module.exports = function(passport) {
                 if (user) {
                     return done(null, user); 
                 } else {
-                    var newUser = new User();
+                    var newUser            = new User();
 
-                    newUser.facebook.id    = profile.id;                 
-                    newUser.facebook.token = token;                 
-                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; 
-                    newUser.facebook.email = profile.emails[0].value;
+                    newUser.facebook.id    = profile.id;                  
+                    newUser.facebook.token = token;                    
+                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                    newUser.facebook.email = profile.emails[0].value; 
+
 
                     newUser.save(function(err) {
                         if (err)
@@ -115,6 +114,5 @@ module.exports = function(passport) {
         });
 
     }));
-
 
 };
