@@ -1,0 +1,31 @@
+html
+  head
+    title Invitable - Sign Up
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
+    style
+      body 		{ padding-top:80px; }
+  body
+    .container
+      .col-sm-6.col-sm-offset-3
+        h1
+          span.fa.fa-sign-in
+          |  Sign up
+        form(action='/signup', method='post')
+          .form-group
+            label Email
+            input.form-control(type='text', name='email')
+          .form-group
+            label Password
+            input.form-control(type='password', name='password')
+          button.btn.btn-warning.btn-lg(type='submit') Sign up
+        hr
+        p
+          | If you already have an account, please  
+          a(href='/login') log in
+          | .
+        p
+          | Return to the 
+          a(href='/') homepage
+          | .

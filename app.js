@@ -20,8 +20,6 @@ var user=require('./routes/userRoute.js');
 
 var app = express(); // sets up the server
 
-
-
 mongoose.connect(config.db);
 
 require('./passport')(passport);
@@ -52,12 +50,6 @@ app.get('/invitables', invitable.get)
 app.post('/invitables', invitable.create)
 
 app.post('/users', user.create)
-
-app.get('/', function (req, res) {
-  res.render('main',
-      { title : 'Home' }
-        )
-})
 
 console.log("now running");
 app.listen(3000)
