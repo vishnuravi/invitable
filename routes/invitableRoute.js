@@ -49,9 +49,7 @@ exports.addUserToEvent = function(req,res){
       user.subs.push({name:req.params.user_name})
       console.log(user);
       console.log(err);
-      user.save(function(error){
-        error? res.send(error):res.json(user);
-      })
+      user.save()
     }
   });
 }
