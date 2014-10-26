@@ -16,6 +16,8 @@ $ node app.js
 | ----|--------- | ------------- |
 | /invitables|Post | Create a new invitable |
 | /invitables|Get |Lists all invitables |
+|/invitables/:event_id'|Get|Gets a single event by event id|
+
 
 
 #Contributing

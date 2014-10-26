@@ -23,5 +23,10 @@ exports.get = function(req, res){
 }
 
 exports.getSingle = function(req,res){
-  Invitabes.findById
+  Invitables.findOne(req.params.event_id, function(err,user){
+    if(err){
+      res.send(err);
+    }
+    res.json(user);
+  });
 }
