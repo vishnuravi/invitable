@@ -17,7 +17,7 @@ $ node app.js
 |/invitables|POST | Create a new invitable |
 |/invitables|GET |Lists all invitables |
 |/invitables/:event_id|GET |Gets a single event by event id|
-|/invitables/:event_id/:user_name|POST |Adds a single user to an event queue|
+|/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|
 
 
 
