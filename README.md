@@ -14,9 +14,10 @@ $ node app.js
 #API Endpoints
 | Route|Rquest Method  | Description |
 | ----|--------- | ------------- |
-| /invitables|Post | Create a new invitable |
-| /invitables|Get |Lists all invitables |
-|/invitables/:event_id'|Get|Gets a single event by event id|
+|/invitables|POST | Create a new invitable |
+|/invitables|GET |Lists all invitables |
+|/invitables/:event_id|GET |Gets a single event by event id|
+|/invitables/:event_id/:user_name|POST |Adds a single user to an event queue|
 
 
 

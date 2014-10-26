@@ -46,6 +46,7 @@ module.exports = function(app, passport) {
 
 	app.post('/invitables', invitable.create)
 	app.get('/invitables/:event_id', invitable.getSingle)
+	app.get('/invitables/:event_id/:user_name', invitable.addUserToEvent)
 
 };
 
