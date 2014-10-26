@@ -14,7 +14,7 @@ $ node app.js
 #API Endpoints
 | Route|Rquest Method  | Description |
 | ----|--------- | ------------- |
-| /invitables|Post | Create a new event |
+| /invitables|Post | Create a new invitable |
 | /invitables|Get |Lists all invitables |
 
 
