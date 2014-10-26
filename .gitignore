@@ -29,4 +29,5 @@ node_modules
 
 .DS_Store
 config/development.js
-auth.js
+
+config/auth.js
