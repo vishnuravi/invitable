@@ -20,6 +20,8 @@ $ node app.js
 #Contributing
 Please submit a pull request on this page, we will then run your code and verify it.  We will not merge in code that you license in a non-GPL compatible license.
 If you find an issue please create an issue (no matter how small you may think it is)!  
+- For API route creation assign issues to @frankcash or @vishnuravi
+- For Front-end issues please assign them to @aarohmankad or @cris1133
 
 #LICENSE
 GPL-3
