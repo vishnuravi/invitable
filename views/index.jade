@@ -1,24 +1,39 @@
-doctype html
-html(lang="en") 
-  head
-    title Invitable - Share and get app invites
-    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
-    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    style
-      body 		{ padding-top:80px; }
-  body
-    .container
-      .jumbotron.text-center
-        h1
-          span.fa.fa-lock
-          | Invitable
-        p Share and get invites for new apps
-        a.btn.btn-default(href='/auth/facebook')
-          span.fa.fa-facebook
-          | Facebook Login
-        a.btn.btn-default(href='/login')
-          span.fa.fa-user
-          | Login with Email
-        a.btn.btn-default(href='/signup')
-          span.fa.fa-user
-          | Signup
+html(class="no-js" lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		title Invitable
+		link(rel="stylesheet" href="../public/css/foundation.css")
+		script(src="../public/js/vendor/modernizr.js")
+		link(rel="stylesheet", href="../public/css/app.css")
+		link(href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css')
+		link(rel="stylesheet" href="../public/css/font-awesome/css/font-awesome.min.css")
+	body
+		.row
+		  .columns.small-12.head
+		    .columns.small-12
+		      h1 Invitable
+		    .columns.small-12.option
+		      a.option(href='#login') Sign In
+		      a.option(href='#login') Sign Up
+		.row
+		  .columns.small-12.body
+		    | Are you fustrated by archaic key distribution systems?
+		    br
+		    | Get on line for some of the most coveted keys.
+		    br
+		    | We make key distribution
+		    b fair
+		    | and
+		    b hassle-free
+		    | .
+		    br
+		    form(action='#signup')
+		      input(type='submit', value='Sign Up')
+		script(src="../public/js/vendor/jquery.js")
+		script(src="../public/js/foundation.min.js")
+		script(src="../public/js/foundation/foundation.magellan.js")
+		script(src="../public/js/jquery.stellar.min.js")
+		<script>
+			$(document).foundation();
+		</script>
