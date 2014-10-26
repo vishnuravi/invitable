@@ -14,7 +14,6 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var invitable=require('./routes/invitableRoute.js');
 
 var app = express(); // sets up the server
 
@@ -43,9 +42,7 @@ require('./routes/routes')(app, passport);
 
 app.use(express.static(__dirname + '/public'))
 
-app.get('/invitables', invitable.get)
 
-app.post('/invitables', invitable.create)
 
 console.log("now running");
 app.listen(3000)

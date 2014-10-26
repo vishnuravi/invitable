@@ -1,8 +1,8 @@
 var Invitables = require('./models/invitable');
 
 exports.create = function(req,res){
-  var event = new Invitables({id:req.body.id, name: req.body.name, url: req.body.url, about: req.body.about, email: req.body.email, creation: req.body.creation});
-  // console.log(req.body);
+  var event = new Invitables({id:req.body.id, name: req.body.name, url: req.body.url, about: req.body.about, email: req.body.email, creation: req.body.creation, subs:[{"name": req.body.subscriber}]});
+  console.log(req.body);
   // console.log(req.body.about);
   event.save(function(err){
     if(err){

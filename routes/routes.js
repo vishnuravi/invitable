@@ -1,3 +1,5 @@
+var invitable=require('./invitableRoute.js');
+
 module.exports = function(app, passport) {
 
 	app.get('/', function(req, res) {
@@ -5,7 +7,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/login', function(req, res) {
-		res.render('login.jade', { message: req.flash('loginMessage') }); 
+		res.render('login.jade', { message: req.flash('loginMessage') });
 	});
 
 	app.post('/login', passport.authenticate('local-login', {
@@ -29,6 +31,10 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+
+	app.get('/invitables', invitable.get)
+
+	app.post('/invitables', invitable.create)
 
 };
 
