@@ -1,5 +1,5 @@
 var config = {}
 
-config.db = "mongodb://localhost:27017/invitable";
+config.db = "mongodb://invitable.vishnu.io:27017/invitable";
 
 module.exports = config;
