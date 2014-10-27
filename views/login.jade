@@ -1,33 +1,38 @@
-doctype html
-html(lang="en") 
+html
   head
-    title Invitable - Login
-    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
-    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    style
-      body    { padding-top:80px; }
+    title Invitable - Log In
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Invitable
+    link(rel="stylesheet" href="css/foundation.css")
+    script(src="js/vendor/modernizr.js")
+    link(rel="stylesheet", href="css/app.css")
+    link(href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
   body
-    .container
-    .col-sm-6.col-sm-offset-3
-      h1
-        span.fa.fa-sign-in
-        | Invitable - Login
-      form(action='/login', method='post')
-        .form-group
+    .row
+      .columns.small-12.head
+        .columns.small-12
+          h1 Invitable
+    .row
+      .columns.small-12.body
+        h1
+        | Login
+        form(action='/login', method='post')
           label Email
-          input.form-control(type='text', name='email')
-        .form-group
+            input.form-control(type='text', name='email')
           label Password
-          input.form-control(type='password', name='password')
-        button.btn.btn-warning.btn-lg(type='submit') Login
-      hr
-      a.option(href="/auth/facebook") Sign in with Facebook
-      hr
-      p
-        | Need an account?
-        a(href='/signup')  Sign up
-        | .
-      p
-        | Return to the 
-        a(href='/')  homepage
-        | .
+            input.form-control(type='password', name='password')
+          button.btn.btn-warning.btn-lg(type='submit') Login
+        hr
+        p
+          a.option(href="/auth/facebook") Sign in with Facebook
+        hr
+        p
+          | Need an account?
+          a(href='/signup')  Sign up
+          | .
+        p
+          | Return to the 
+          a(href='/')  homepage
+          | .
