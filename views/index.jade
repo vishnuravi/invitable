@@ -1,37 +1,39 @@
-html(class="no-js" lang="en")
-	head
-		meta(charset="utf-8")
-		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		title Invitable
-		link(rel="stylesheet" href="css/foundation.css")
-		script(src="js/vendor/modernizr.js")
-		link(rel="stylesheet", href="css/app.css")
-		link(href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css')
-		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
-	body
-		.row
-			.columns.small-12.head
-				.columns.small-12
-					h1 Invitable
-			.columns.small-12.option
-				a.option(href='/login') Sign In
-				a.option(href='/login') Sign Up
-		.row
-			.columns.small-12.body
-				| Are you fustrated by archaic key distribution systems?
-				br
-				| Get on line for some of the most coveted keys.
-				br
-				| We make key distribution
-				b fair
-				| and
-				b hassle-free
-				| .
-				br
-				form(action='#signup')
-					input(type='submit', value='Sign Up')
-		script(src="js/vendor/jquery.js")
-		script(src="js/foundation.min.js")
-		script(src="js/foundation/foundation.magellan.js")
-		script(src="js/jquery.stellar.min.js")
-		<script>$(document).foundation();</script>
+!!! 5
+html.no-js(lang='en')
+head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Invitable
+    link(rel="stylesheet" href="css/foundation.css")
+    script(src="js/vendor/modernizr.js")
+    link(rel="stylesheet", href="css/app.css")
+    link(href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
+  body
+    .row
+      .columns.small-12.head
+        .columns.small-12
+          h1 Invitable
+        .columns.small-12.option
+          a.option(href='#login') Sign In
+          a.option(href='#login') Sign Up
+    .row
+      .columns.small-12.body
+        | Are you fustrated by archaic key distribution systems?
+        br
+        | Get on line for some of the most coveted keys.
+        br
+        | We make key distribution
+        b fair
+        | and
+        b hassle-free
+        | .
+        br
+        form(action='#signup')
+          input(type='submit', value='Sign Up')
+    script(src="js/vendor/jquery.js")
+    script(src="js/foundation.min.js")
+    script(src="js/jquery.stellar.min.js")
+    script
+      $(document).foundation();
+
