@@ -1,4 +1,5 @@
 var Invitables = require('./models/invitable');
+var Subscribers = require('./models/subscriber');
 
 exports.create = function(req,res){
   var event = new Invitables(
@@ -12,7 +13,7 @@ exports.create = function(req,res){
       });
 
   console.log(req.body);
-  console.log(event.subs);
+  console.log(event)
   // console.log(req.body.about);
   event.save(function(err){
     if(err){
@@ -41,15 +42,33 @@ exports.getSingle = function(req,res){
   });
 }
 
+// exports.addUserToEvent = function(req,res){
+//   Invitables.findOne(req.params.event_id, function(err,user){
+//     if(err){
+//       res.send(err)
+//     }else{
+//       user.subs.push({name:req.params.user_name})
+//       console.log(user);
+//       console.log(err);
+//       user.save()
+//     }
+//   });
+// }
+
 exports.addUserToEvent = function(req,res){
-  Invitables.findOne(req.params.event_id, function(err,user){
-    if(err){
-      res.send(err)
-    }else{
-      user.subs.push({name:req.params.user_name})
-      console.log(user);
-      console.log(err);
-      user.save()
+  console.log(req.params.event_id);
+
+  var subscriber = new Subscribers({
+    name: req.params.user_name,
+    invitable: req.params.event_id
+  })
+  console.log(subscriber);
+  subscriber.save( function(err, result) {
+    if (err) {
+      console.log("err");
+      res.send(err);
     }
+    console.log("Y");
+    res.send("Okay");
   });
 }
