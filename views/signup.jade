@@ -1,25 +1,25 @@
-html
-  head
-    title Invitable - Sign Up
+doctype html
+html.no-js(lang='en')
+head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Invitable
+    title Invitable - Signup
     link(rel="stylesheet" href="css/foundation.css")
     script(src="js/vendor/modernizr.js")
     link(rel="stylesheet", href="css/app.css")
     link(href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
-    style
-      body 		{ padding-top:80px; }
   body
     .row
       .columns.small-12.head
         .columns.small-12
           h1 Invitable
+        .columns.small-12.option
+          a.option(href='/login') Sign In
+          a.option(href='/signup') Sign Up
     .row
-      .columns.small-12.body
-        h1
-          |  Sign Up
+      .columns.small-12.large-6.medium-6.body
+        Sign Up
         form(action='/signup', method='post')
             label Email
               input.form-control(type='text', name='email')
