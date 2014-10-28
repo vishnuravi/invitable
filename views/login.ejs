@@ -49,22 +49,24 @@
     	<% } %>
 
 
-		<div class="columns small-12 large-6 medium-6 body">
-					<h1> Log In </h1>
-			<form action="/login" method="post">
-				<label>Email<input type="text" name="email" class="form-control"></label><label>Password<input type="password" name="password" class="form-control"></label><button type="submit" class="btn btn-warning btn-lg">Login</button>
-			</form>
-			<hr>
-			<p>
-				<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
-			</p>
-			<hr>
-			<p>
-				Need an account? <a href="/signup">Sign up</a>.
-			</p>
-			<p>
-				Return to the <a href="/">homepage</a>.
-			</p>
+		<div class="columns small-12 large-12 medium-12 body">
+			<div class="columns small-12 large-6 medium-6">
+				Log In
+				<form action="/login" method="post">
+					<label>Email<input type="text" name="email" class="form-control"></label><label>Password<input type="password" name="password" class="form-control"></label><button type="submit" class="btn btn-warning btn-lg">Login</button>
+				</form>
+				<hr>
+				<p>
+					<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+				</p>
+				<hr>
+				<p>
+					Need an account? <a href="/signup">Sign up</a>.
+				</p>
+				<p>
+					Return to the <a href="/">homepage</a>.
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
