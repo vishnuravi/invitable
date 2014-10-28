@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0028)http://localhost:3000/signup -->
-<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
@@ -19,18 +17,25 @@
 			<h1>Invitable</h1>
 		</div>
 		<div class="columns small-12 option">
-			<a href="/login" class="option">Sign In</a><a href="/signup.html" class="option">Sign Up</a>
+			<a href="/login" class="option">Log In</a><a href="/signup.html" class="option">Sign Up</a>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="columns small-12 body">
+
+		<!-- display messages that are sent back from authentication -->
+		<% if (message.length > 0) { %>
+        <div data-alert class="alert-box warning"><%= message %></div>
+        <a href="#" class="close">&times;</a>
+    	<% } %>
+
 		Sign Up
 		<div class="columns small-12 large-6 medium-6 body">
-			<form action="/signup.html" method="post">
+			<form action="/signup" method="post">
 				<label>Email<input type="text" name="email" class="form-control"></label><label>Password<input type="password" name="password" class="form-control"></label>
+				<button type="submit" class="btn btn-warning btn-lg">Sign up</button>
 			</form>
-			<button type="submit" class="btn btn-warning btn-lg">Sign up</button>
 			<hr>
 			<p>
 				If you already have an account, please <a href="/login">log in</a>.
