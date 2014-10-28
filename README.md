@@ -10,6 +10,7 @@ Users with extra invites will then be allowed to give up their invites!
 ```
 $ npm install
 $ node app.js
+> invitable is now running
 ```
 #API Endpoints
 | Route|Rquest Method  | Description |
