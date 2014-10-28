@@ -4,7 +4,6 @@
   "license": "GPL-3",
   "dependencies": {
     "express": "3.0.0alpha4",
-    "jade": "*",
     "nib": "*",
     "cheerio":"0.15.0",
     "mongoose" : "*",
@@ -20,6 +19,7 @@
     "cookie-parser": "~1.0.0",
     "express-session": "~1.0.0",
     "bson":"*",
-    "request":"2.30.0"
+    "request":"2.30.0",
+    "ejs":"*"
   }
 }
