@@ -21,7 +21,7 @@ mongoose.connect(config.db);;
 
 app.set('views', __dirname + '/views') // sets dir
 
-app.set('view engine', 'jade') // tells express to use jade
+// deactivate jade -- app.set('view engine', 'jade')
 
 app.use(express.logger('dev'))
 
