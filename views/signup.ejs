@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/foundation.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+	<title>Invitable - Signup</title>
+
 </head>
+
 <body>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitable - Signup</title>
-<link rel="stylesheet" href="../public/css/foundation.css">
-<script src="../public/js/modernizr.js"></script>
-<link rel="stylesheet" href="../public/css/app.css">
-<link href="../public/signup_files/css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div class="row">
 	<div class="columns small-12 head">
 		<div class="columns small-12">
@@ -36,7 +38,6 @@
 				<label>Email<input type="text" name="email" class="form-control"></label><label>Password<input type="password" name="password" class="form-control"></label>
 				<button type="submit" class="btn btn-warning btn-lg">Sign up</button>
 			</form>
-			<hr>
 			<p>
 				If you already have an account, please <a href="/login">log in</a>.
 			</p>
@@ -46,5 +47,13 @@
 		</div>
 	</div>
 </div>
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script src="js/foundation/foundation.magellan.js"></script>
+		<script src="js/jquery.stellar.min.js"></script>
+		<script src="js/modernizr.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
 </body>
 </html>
