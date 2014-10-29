@@ -34,11 +34,14 @@
 
 		<div class="columns small-12 large-8 medium-8">
 			Sign up
-			<form action="/signup" method="post">
-				<label>Email<input type="text" name="email" class="form-control"></label><label>Password<input type="password" name="password" class="form-control"></label>
+			<br />
+			<form action="/signup" method="post" data-abide>
+				<label>Email<input type="email" name="email" class="form-control" required></label>
+				<small class="error">An email address is required.</small>
+				<label>Password<input type="password" name="password" class="form-control"></label>
 				<button type="submit" class="btn btn-warning btn-lg">Sign up</button>
 			</form>
-			<hr/>
+			<hr />
 			<p class="label">
 				If you already have an account, please <a href="/login">log in</a>.
 			</p>
@@ -51,6 +54,7 @@
 		<script src="js/vendor/jquery.js"></script>
 		<script src="js/foundation.min.js"></script>
 		<script src="js/foundation/foundation.magellan.js"></script>
+		<script src="js/foundation/foundation.abide.js"></script>
 		<script src="js/jquery.stellar.min.js"></script>
 		<script src="js/modernizr.js"></script>
 		<script>

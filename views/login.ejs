@@ -34,13 +34,17 @@
 
 			<div class="columns small-12 large-8 medium-8">
 				Log In
-				<form action="/login" method="post">
-					<label>Email<input type="text" name="email" class="form-control"></label><label>Password<input type="password" name="password" class="form-control"></label><button type="submit" class="btn btn-warning btn-lg">Login</button>
+				<br />
+				<form action="/login" method="post" data-abide>
+					<label>Email<input type="email" name="email" class="form-control" required></label>
+					<small class="error">An email address is required.</small>
+					<label>Password<input type="password" name="password" class="form-control"></label>
+					<button type="submit" class="btn btn-warning btn-lg">Login</button>
 				</form>
 				<p>
 					<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 				</p>
-				<hr>
+				<hr />
 				<p class="label">
 					Need an account? <a href="/signup">Sign up</a>.
 				</p>
@@ -53,6 +57,7 @@
 		<script src="js/vendor/jquery.js"></script>
 		<script src="js/foundation.min.js"></script>
 		<script src="js/foundation/foundation.magellan.js"></script>
+		<script src="js/foundation/foundation.abide.js"></script>
 		<script src="js/jquery.stellar.min.js"></script>
 		<script src="js/modernizr.js"></script>
 		<script>
