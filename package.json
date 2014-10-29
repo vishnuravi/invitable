@@ -20,6 +20,7 @@
     "express-session": "~1.0.0",
     "bson":"*",
     "request":"2.30.0",
-    "ejs":"*"
+    "ejs":"*",
+	"gith":"*"
   }
 }
