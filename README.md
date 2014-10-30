@@ -19,6 +19,7 @@ $ node app.js
 |/invitables|GET |Lists all invitables |
 |/invitables/:event_id|GET |Gets a single event by event id|
 |/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|
+|/events/sub/:user_name|GET | Gets the events a user is subbed to|
 
 
 
