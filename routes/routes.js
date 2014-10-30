@@ -66,7 +66,7 @@ module.exports = function(app, passport) {
 
 	// add a user to an invitable queue
 	app.get('/invitables/:event_id/:user_name', invitable.addUserToEvent);
-	app.get('/events/sub/:user_name', invitable.getSub)
+	app.get('/subscriber/:user_name', invitable.getSub)
 };
 
 // route middleware to see if a user is logged in
