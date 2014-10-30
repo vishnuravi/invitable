@@ -28,22 +28,28 @@
 	<div class="columns small-12 body">
 
 		<!-- display messages that are sent back from authentication -->
-		<% if (message.length > 0) { %>
-        <div data-alert class="alert-box warning"><%= message %></div>
-        <a href="#" class="close">&times;</a>
-    	<% } %>
+		
 
 		<div class="columns small-12 large-8 medium-8">
+			<% if (message.length > 0) { %>
+        	<div data-alert class="alert-box warning"><%= message %></div>
+    		<% } %>
+
 			Sign Up
 			<hr />
-			<p><a href="/auth/facebook"><img src="img/facebooklogin.png" /></a></p>
-			<form action="/signup" method="post" data-abide>
-				<label>Email<input type="email" name="email" class="form-control" required></label>
+			<p class="facebookLoginButton"><a href="/auth/facebook"><img src="img/facebooklogin.png" /></a>
+				<br /> or <br />
+			</p>
+			<form id="signup" action="/signup" method="post" data-abide>
+				<fieldset class="signup">
+				<input type="email" name="email" class="form-control" placeholder="E-mail Address" required>
 				<small class="error">An email address is required.</small>
-				<label>Password<input type="password" name="password" class="form-control"></label>
+				<input type="password" name="password" class="form-control" placeholder="Password">
+				<input type="password" class="form-control" data-equalto="password" placeholder="Confirm Password">
+				<small class="error">The passwords must match.</small>
 				<button type="submit" class="btn btn-warning btn-lg">Sign up</button>
+			</fieldset>
 			</form>
-			<hr />
 			<p class="label">
 				If you already have an account, please <a href="/login">log in</a>.
 			</p>

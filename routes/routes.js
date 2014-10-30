@@ -64,8 +64,10 @@ module.exports = function(app, passport) {
 	// get an invitable by id
 	app.get('/invitables/:event_id', invitable.getSingle);
 
-	// add a user to an invitable queue
+	// subscribe a user to an invitable queue
 	app.get('/invitables/:event_id/:user_name', invitable.addUserToEvent);
+
+	// get all queues a user is subscribed to
 	app.get('/subscriber/:user_name', invitable.getSub)
 };
 

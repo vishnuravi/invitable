@@ -34,18 +34,24 @@
 			<div class="columns small-12 large-8 medium-8">
 				Log In
 				<hr />
-				<p><a href="/auth/facebook"><img src="img/facebooklogin.png" /></a></p>
+				<p class="facebookLoginButton">
+					<a href="/auth/facebook"><img src="img/facebooklogin.png" /></a>
+					<br /> or <br />
+				</p>
 				<form action="/login" method="post" data-abide>
-					<label>Email<input type="email" name="email" class="form-control" required></label>
+					<fieldset>
+					<input type="email" name="email" class="form-control" required placeholder="E-mail address">
 					<small class="error">An email address is required.</small>
-					<label>Password<input type="password" name="password" class="form-control"></label>
+					<input type="password" name="password" class="form-control" placeholder="Password">
 					<button type="submit" class="btn btn-warning btn-lg">Login</button>
+					</fieldset>
 				</form>
-				<hr />
 				<p class="label">
 					Need an account? <a href="/signup">Sign up</a>.
 				</p>
-				<br />
+				<p class="label">
+					<a href="/forgotpassword">Forgot your password?</a>
+				</p>
 				<p class="label">
 					Return to the <a href="/">homepage</a>.
 				</p>
