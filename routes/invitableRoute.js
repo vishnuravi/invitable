@@ -42,18 +42,22 @@ exports.getSingle = function(req,res){
   });
 }
 
-// exports.addUserToEvent = function(req,res){
-//   Invitables.findOne(req.params.event_id, function(err,user){
-//     if(err){
-//       res.send(err)
-//     }else{
-//       user.subs.push({name:req.params.user_name})
-//       console.log(user);
-//       console.log(err);
-//       user.save()
-//     }
-//   });
-// }
+exports.getSub = function(req,res){
+  // Subscribers.find({ name : req.params.user_name}, function(err,user){
+  //   if(err){
+  //     res.send(err);
+  //     console.log("error");
+  //   }
+  //   res.json(user);
+  //
+  // })
+
+
+
+  Subscribers.find({name: req.params.user_name}).populate('Invitable', 'name').exec(function (err, results){
+    console.log(results);
+  })
+}
 
 exports.addUserToEvent = function(req,res){
   console.log(req.params.event_id);

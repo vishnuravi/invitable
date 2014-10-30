@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// var SubscriberSchema = new Schema({
-//   name: String,
-//   invitable: { type: Schema.Types.ObjectId, ref: 'InvitableSchema'}
-// });
+
 
 var InvitableSchema = new Schema({
   id: Number,
@@ -16,5 +13,3 @@ var InvitableSchema = new Schema({
 });
 
 module.exports = mongoose.model('Invitable', InvitableSchema);
-
-// module.exports = mongoose.model('Subscriber', SubscriberSchema);
