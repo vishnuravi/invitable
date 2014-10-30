@@ -19,7 +19,7 @@ exports.create = function(req,res){
     if(err){
       res.send({message: 'db problem!'});
     }
-    res.json({message: 'user created!'});
+    res.json({message: 'event created!'});
   });
 }
 
@@ -43,19 +43,12 @@ exports.getSingle = function(req,res){
 }
 
 exports.getSub = function(req,res){
-  // Subscribers.find({ name : req.params.user_name}, function(err,user){
-  //   if(err){
-  //     res.send(err);
-  //     console.log("error");
-  //   }
-  //   res.json(user);
-  //
-  // })
+  /**
+  Gets the events a user is subbed to
+  **/
+  Subscribers.find({name: req.params.user_name}).populate('invitable', 'name').exec(function (err, subscription){
+    (err ? res.send(err) : res.send(subscription));
 
-
-
-  Subscribers.find({name: req.params.user_name}).populate('Invitable', 'name').exec(function (err, results){
-    console.log(results);
   })
 }
 
