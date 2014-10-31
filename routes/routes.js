@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
 
 	// process login form
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile',
+		successRedirect : '/account',
 		failureRedirect : '/login',
 		failureFlash : true
 	}));
@@ -26,14 +26,14 @@ module.exports = function(app, passport) {
 
 	// process signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/profile',
+		successRedirect : '/account',
 		failureRedirect : '/signup',
 		failureFlash : true
 	}));
 
-	// show the user's profile
-	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('profile.ejs', {
+	// show the user's account
+	app.get('/account', isLoggedIn, function(req, res){
+		res.render('account.ejs', {
 			user : req.user
 		});
 	})
@@ -44,7 +44,7 @@ module.exports = function(app, passport) {
 	// handle the callback after facebook has authenticated the user
 	app.get('/auth/facebook/callback',
 		passport.authenticate('facebook', {
-			successRedirect : '/profile',
+			successRedirect : '/account',
 			failureRedirect : '/'
 		}));
 
@@ -78,6 +78,6 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	// else, send them to home page
-	res.redirect('/');
+	// else, send them to login page
+	res.redirect('/login');
 }
