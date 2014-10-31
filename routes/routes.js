@@ -49,6 +49,32 @@ module.exports = function(app, passport) {
 		}));
 
 
+
+	// for users that are already authenticated, we can connect additional accounts
+
+	// show local account creation page
+	app.get('/connect/local', function(req, res) {
+    res.render('connect-local.ejs', { message: req.flash('loginMessage') });
+  });
+
+	// attempt to connect local account, on error send back to local account creation page
+	app.post('/connect/local', passport.authenticate('local-signup', {
+    successRedirect : '/account',
+    failureRedirect : '/connect/local',
+    failureFlash : true
+  }));
+
+  // if user is connecting a facebook account, send to facebook to do the authentication
+  app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+
+  // handle the callback after facebook has authorized the user
+  app.get('/connect/facebook/callback',
+      passport.authorize('facebook', {
+      successRedirect : '/profile',
+      failureRedirect : '/'
+  }));
+
+
 	// logout the user
 	app.get('/logout', function(req, res) {
 		req.logout();
