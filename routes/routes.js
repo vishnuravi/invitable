@@ -49,7 +49,6 @@ module.exports = function(app, passport) {
 		}));
 
 
-
 	// for users that are already authenticated, we can connect additional accounts
 
 	// show local account creation page
@@ -70,10 +69,30 @@ module.exports = function(app, passport) {
   // handle the callback after facebook has authorized the user
   app.get('/connect/facebook/callback',
       passport.authorize('facebook', {
-      successRedirect : '/profile',
+      successRedirect : '/account',
       failureRedirect : '/'
   }));
 
+	// users can unlink connected accounts
+
+	// unlink the local account
+  app.get('/unlink/local', function(req, res) {
+      var user = req.user;
+      user.local.email = undefined;
+      user.local.password = undefined;
+      user.save(function(err) {
+          res.redirect('/account');
+      });
+  });
+
+  // unlink the facebook account
+  app.get('/unlink/facebook', function(req, res) {
+      var user = req.user;
+      user.facebook.token = undefined;
+      user.save(function(err) {
+          res.redirect('/account');
+      });
+  });
 
 	// logout the user
 	app.get('/logout', function(req, res) {
