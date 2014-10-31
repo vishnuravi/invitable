@@ -55,6 +55,15 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 
+
+	// list view of invitables
+	app.get('/invitables/list', function(req, res){
+		res.render('invitablesList.ejs');
+	});
+
+
+	// API Endpoints
+
 	// get all invitables
 	app.get('/invitables', invitable.get);
 
