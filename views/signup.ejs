@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <head>
-
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/app.css">
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
 	<title>Invitable - Signup</title>
-
+	<% include head.ejs %>
 </head>
 
 <body>
@@ -22,12 +16,12 @@
 			<div data-alert class="alert-box warning"><%= message %></div>
 		<% } %>
 		<h2 class="underline">Sign up</h2>
-		
+
 		<form id="signup" action="/signup" method="post" data-abide class="form-auth">
 			<fieldset class="signup">
-				<input type="email" name="email" class="form-control" placeholder="E-mail Address" required>
+				<input type="email" name="email" class="form-control" placeholder="E-mail Address">
 				<input type="password" name="password" class="form-control" placeholder="Password">
-				<input type="password" class="form-control" data-equalto="password" placeholder="Confirm Password">
+				<input type="password" class="form-control" placeholder="Confirm Password">
 				<button type="submit" class="btn btn-info btn-block">Sign up</button>
 			</fieldset>
 		</form>
@@ -37,14 +31,5 @@
 		<a href="/auth/facebook" class="btn-fb-auth"><img src="img/facebooklogin.png"/></a>
 	</div>
 </div>
-		<script src="js/vendor/jquery.js"></script>
-		<script src="js/foundation.min.js"></script>
-		<script src="js/foundation/foundation.magellan.js"></script>
-		<script src="js/foundation/foundation.abide.js"></script>
-		<script src="js/jquery.stellar.min.js"></script>
-		<script src="js/vendor/modernizr.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
 </body>
 </html>
