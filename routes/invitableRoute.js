@@ -9,17 +9,14 @@ exports.create = function(req,res){
       about: req.body.about,
       email: req.body.email,
       creation: req.body.creation,
-      subs:[{"name": req.body.subscriber}]
+      sendable: req.body.sendable
       });
-
-  console.log(req.body);
-  console.log(event)
   // console.log(req.body.about);
   event.save(function(err){
     if(err){
-      res.send({message: 'db problem!'});
+      res.send("500");
     }
-    res.json({message: 'event created!'});
+    res.send("200");
   });
 }
 
@@ -99,4 +96,10 @@ exports.getInvitableSubs= function(req,res){
     }
     (err ? res.send(err) : res.send(subscription));
   })
+}
+
+exports.sendEmail = function(req,res){
+  /**
+  smtp stuff pls
+  **/
 }

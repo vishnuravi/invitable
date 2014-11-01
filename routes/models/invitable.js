@@ -10,6 +10,7 @@ var InvitableSchema = new Schema({
   about: String,
   email: String,
   creation: Date,
+  sendable: Boolean
 });
 
 module.exports = mongoose.model('Invitable', InvitableSchema);

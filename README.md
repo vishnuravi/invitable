@@ -23,7 +23,9 @@ $ node app.js
 |/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|
 |/subscriber/invitables/:user_name|GET|Gets all users subscribed to an invitable|
 |/subscriber/users/:event_name|GET|Gets all invitables a user is subscribed to|
-
+|/user/increment/sends/:user_name|GET| increment invites sent|
+|/user/increment/receives/:user_name|GET| increment invites received|
+|/subscriber/send|POST|Sends a user an invite|
 
 
 #Contributing

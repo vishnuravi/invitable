@@ -217,6 +217,9 @@ app.post('/resetPassword/:token', function(req, res) {
 	app.get('/subscriber/users/:event_name', invitable.getInvitableSubs)// get all users in a queue
 	app.post('/subscriber/delete', invitable.deleteSub); // delete a subscriber
 	app.post('/invitables/delete', invitable.deleteInvitable); // delete an invitable
+	app.get('/user/increment/sends/:user_name'); // increment invites sent
+	app.get('/user/increment/receives/:user_name') // increment invites received
+	app.post('/subscriber/send'); // send an invite to a subscriber
 };
 
 // route middleware to see if a user is logged in
