@@ -16,8 +16,10 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
-
+    },
+    invitesGiven : { type: Number, default: 0 },
+    invitesReceived : { type: Number, default: 0},
+    admin : boolean
 });
 
 // generate a password hash
