@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
 
 	// process login form
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/account',
+		successRedirect : '/profile',
 		failureRedirect : '/login',
 		failureFlash : true
 	}));
@@ -26,14 +26,14 @@ module.exports = function(app, passport) {
 
 	// process signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/account',
+		successRedirect : '/profile',
 		failureRedirect : '/signup',
 		failureFlash : true
 	}));
 
-	// show the user's account
-	app.get('/account', isLoggedIn, function(req, res){
-		res.render('account.ejs', {
+	// show the user's profile
+	app.get('/profile', isLoggedIn, function(req, res){
+		res.render('profile.ejs', {
 			user : req.user
 		});
 	})
@@ -44,70 +44,16 @@ module.exports = function(app, passport) {
 	// handle the callback after facebook has authenticated the user
 	app.get('/auth/facebook/callback',
 		passport.authenticate('facebook', {
-			successRedirect : '/account',
+			successRedirect : '/profile',
 			failureRedirect : '/'
 		}));
 
-
-	// for users that are already authenticated, we can connect additional accounts
-
-	// show local account creation page
-	app.get('/connect/local', function(req, res) {
-    res.render('connect-local.ejs', { message: req.flash('loginMessage') });
-  });
-
-	// attempt to connect local account, on error send back to local account creation page
-	app.post('/connect/local', passport.authenticate('local-signup', {
-    successRedirect : '/account',
-    failureRedirect : '/connect/local',
-    failureFlash : true
-  }));
-
-  // if user is connecting a facebook account, send to facebook to do the authentication
-  app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
-
-  // handle the callback after facebook has authorized the user
-  app.get('/connect/facebook/callback',
-      passport.authorize('facebook', {
-      successRedirect : '/account',
-      failureRedirect : '/'
-  }));
-
-	// users can unlink connected accounts
-
-	// unlink the local account
-  app.get('/unlink/local', function(req, res) {
-      var user = req.user;
-      user.local.email = undefined;
-      user.local.password = undefined;
-      user.save(function(err) {
-          res.redirect('/account');
-      });
-  });
-
-  // unlink the facebook account
-  app.get('/unlink/facebook', function(req, res) {
-      var user = req.user;
-      user.facebook.token = undefined;
-      user.save(function(err) {
-          res.redirect('/account');
-      });
-  });
 
 	// logout the user
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});
-
-
-	// list view of invitables
-	app.get('/invitables/list', function(req, res){
-		res.render('invitablesList.ejs');
-	});
-
-
-	// API Endpoints
 
 	// get all invitables
 	app.get('/invitables', invitable.get);
@@ -122,7 +68,9 @@ module.exports = function(app, passport) {
 	app.get('/invitables/:event_id/:user_name', invitable.addUserToEvent);
 
 	// get all queues a user is subscribed to
-	app.get('/subscriber/:user_name', invitable.getSub)
+	app.get('/subscriber/:user_name', invitable.getSub);
+	
+	app.post('/subscriber/delete', invitable.deleteSub);
 };
 
 // route middleware to see if a user is logged in
@@ -132,6 +80,6 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	// else, send them to login page
-	res.redirect('/login');
+	// else, send them to home page
+	res.redirect('/');
 }

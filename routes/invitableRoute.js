@@ -70,7 +70,7 @@ exports.addUserToEvent = function(req,res){
   });
 }
 
-exports.deleteInvitable = function(req, res){
+exports.deleteSub = function(req, res){
   Invitables.remove({_id:req.params.event_id}, function(err,result){
     (err? res.send(err) : res.send(result));
   })
