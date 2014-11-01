@@ -3,6 +3,7 @@ var User = require('./models/users');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var async = require('async');
+var bcrypt   = require('bcrypt-nodejs');
 
 
 module.exports = function(app, passport) {
@@ -60,7 +61,7 @@ module.exports = function(app, passport) {
         subject: 'Invitable Password Reset',
         text: 'Hi! Someone asked for your Invitable account password to be reset.\n\n' +
           'If it wasn\'t you please ignore this message. If it was you, please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n'
+          'http://' + req.headers.host + '/resetPassword/' + token + '\n\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
         req.flash('info', 'E-mail sent to ' + user.local.email);
@@ -74,6 +75,18 @@ module.exports = function(app, passport) {
 });
 
 // reset password
+app.get('/resetPassword/:token', function(req, res) {
+  User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpiry': { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error', 'The password reset link is invalid or has expired.');
+      return res.redirect('/forgotPassword');
+    }
+    res.render('resetPassword.ejs', {
+      user: req.user, message: 'resetPasswordMessage'
+    });
+  });
+});
+
 app.post('/resetPassword/:token', function(req, res) {
   async.waterfall([
     function(done) {
@@ -83,12 +96,12 @@ app.post('/resetPassword/:token', function(req, res) {
           return res.redirect('back');
         }
 
-        user.local.password = User.generateHate(req.body.password);
+        user.local.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
         user.local.resetPasswordToken = undefined;
-        user.local.resetPasswordExpires = undefined;
+        user.local.resetPasswordExpiry = undefined;
 
         user.save(function(err) {
-          req.logIn(user, function(err) {
+          req.login(user, function(err) {
             done(err, user);
           });
         });
