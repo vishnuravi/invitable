@@ -28,41 +28,33 @@
       <div class="columns small-12 large-8 medium-8">
       My Account
         <hr />
-         <p>
            Invitable Account
            <% if(user.local.email) { %>
            <p>
-            <strong>E-mail</strong>: <%= user.local.email %>
-          </p>
-          <p>
+            <strong>E-mail</strong>: <%= user.local.email %><br /><br />
             <a href="/changePassword" class="button">Change Password</a>&nbsp;&nbsp;
             <a href="/unlink/local" class="button">Unlink Invitable Account</a>
           </p>
 
           <% } else { %>
             <p>
-              You didn't create an account with your e-mail address.
-            </p>
-            <p>
+              You didn't create an account with your e-mail address.<br /><br />
               <a href="/connect/local" class="button">Create an account</a>
             </p>
           <% } %>
 
             Facebook Account
-             <% if (user.facebook.token) { %>
-                    <p>
-                        You've connected the Facebook account with the e-mail <%= user.facebook.email %>.
-                    </p>
-
-                    <a href="/unlink/facebook" class="button">Unlink Facebook</a>
-                <% } else { %>
-                    <p>
-                      You haven't connected a Facebook account.
-                    </p>
-                    <a href="/connect/facebook" class="button">Connect Facebook</a>
+            <% if (user.facebook.token) { %>
+            <p>
+              You've connected the Facebook account with the e-mail <%= user.facebook.email %>.<br /><br />
+              <a href="/unlink/facebook" class="button">Unlink Facebook</a>
+            </p>
+            <% } else { %>
+            <p>
+              You haven't connected a Facebook account.<br /><br />
+              <a href="/connect/facebook" class="button">Connect Facebook</a>
+            </p>
                 <% } %>
-
-        </p>
 
       </div>
   </div>

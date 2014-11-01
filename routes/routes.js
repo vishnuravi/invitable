@@ -27,7 +27,7 @@ module.exports = function(app, passport) {
 
 	// forgot password
 	app.get('/forgotPassword', function(req, res){
-		res.render('forgotPassword.ejs', { user: req.user, message: req.flash('forgotPasswordMessage') });
+		res.render('forgotPassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
 	});
 
 	app.post('/forgotPassword', function(req, res, next) {
@@ -82,7 +82,7 @@ app.get('/resetPassword/:token', function(req, res) {
       return res.redirect('/forgotPassword');
     }
     res.render('resetPassword.ejs', {
-      user: req.user, message: 'resetPasswordMessage'
+      user: req.user, message: req.flash('info'), error: req.flash('error')
     });
   });
 });
@@ -114,15 +114,15 @@ app.post('/resetPassword/:token', function(req, res) {
         from: 'invitable@vishnu.io',
         subject: 'Your Invitable account password has been changed!',
         text: 'Hello,\n\n' +
-          'The password for your account on Invitable with the email - ' + user.email + ' - has just been changed.\n'
+          'The password for your account on Invitable with the email - ' + user.local.email + ' - has just been changed.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('success', 'Your Invitable password has been changed!');
+        req.flash('info', 'Your Invitable password has been changed!');
         done(err);
       });
     }
   ], function(err) {
-    res.redirect('/');
+    res.redirect('/login');
   });
 });
 
@@ -206,6 +206,8 @@ app.post('/resetPassword/:token', function(req, res) {
 		res.redirect('/');
 	});
 
+
+// API endpoints
 
 	app.get('/invitables', invitable.get); // get all invitables
 	app.post('/invitables', invitable.create); // create an invitable
