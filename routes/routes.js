@@ -74,7 +74,7 @@ module.exports = function(app, passport) {
 });
 
 // reset password
-app.post('/reset/:token', function(req, res) {
+app.post('/resetPassword/:token', function(req, res) {
   async.waterfall([
     function(done) {
       User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpiry': { $gt: Date.now() } }, function(err, user) {
