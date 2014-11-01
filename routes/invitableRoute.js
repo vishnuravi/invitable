@@ -71,7 +71,11 @@ exports.addUserToEvent = function(req,res){
 }
 
 exports.deleteSub = function(req, res){
-  Invitables.remove({_id:req.params.event_id}, function(err,result){
-    (err? res.send(err) : res.send(result));
+  console.log(req.body.event_id);
+  console.log(req.body.user_id);
+  Subscribers.remove({name: req.body.user_id, invitable: req.body.event_id}).exec(function (err, subscription){
+    console.log(err);
+    (err ? res.send(err) : res.send("Okay"));
+
   })
 }
