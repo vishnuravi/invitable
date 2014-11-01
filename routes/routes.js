@@ -149,22 +149,15 @@ app.post('/resetPassword/:token', function(req, res) {
 		res.redirect('/');
 	});
 
-	// get all invitables
-	app.get('/invitables', invitable.get);
 
-	// create an invitable
-	app.post('/invitables', invitable.create);
-
-	// get an invitable by id
-	app.get('/invitables/:event_id', invitable.getSingle);
-
-	// subscribe a user to an invitable queue
-	app.get('/invitables/:event_id/:user_name', invitable.addUserToEvent);
-
-	// get all queues a user is subscribed to
-	app.get('/subscriber/:user_name', invitable.getSub);
-	
-	app.post('/subscriber/delete', invitable.deleteSub);
+	app.get('/invitables', invitable.get); // get all invitables
+	app.post('/invitables', invitable.create); // create an invitable
+	app.get('/invitables/:event_id', invitable.getSingle); // get an invitable by id
+	app.get('/invitables/:event_id/:user_name', invitable.addUserToEvent); // subscribe a user to an invitable queue
+	app.get('/subscriber/invitables/:user_name', invitable.getSub); // get all queues a user is subscribed to
+	app.get('/subscriber/users/:event_name', invitable.getInvitableSubs)// get all users in a queue
+	app.post('/subscriber/delete', invitable.deleteSub); // delete a subscriber
+	app.post('/invitables/delete', invitable.deleteInvitable); // delete an invitable
 };
 
 // route middleware to see if a user is logged in

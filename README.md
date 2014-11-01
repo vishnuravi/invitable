@@ -17,9 +17,12 @@ $ node app.js
 | ----|--------- | ------------- |
 |/invitables|POST | Create a new invitable |
 |/invitables|GET |Lists all invitables |
+|/invitables/delete|POST|Deletes an invitable|
+|/subscriber/delete|POST|Deletes a subscriber|
 |/invitables/:event_id|GET |Gets a single event by event id|
 |/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|
-|/subscriber/:user_name|GET | Gets the events a user is subbed to|
+|/subscriber/invitables/:user_name|GET|Gets all users subscribed to an invitable|
+|/subscriber/users/:event_name|GET|Gets all invitables a user is subscribed to|
 
 
 
