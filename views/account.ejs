@@ -2,71 +2,47 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="css/foundation.css">
-  <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
   <title>Invitable - My Account</title>
+  <% include head.ejs %>
 </head>
 
 <body>
-
-<div class="row">
-  <div class="columns small-12 head">
-    <div class="columns small-12">
-      <h1>Invitable</h1>
+<h1 class="logo"><a href="/">Invitable</a></h1>
+<div class="card-container">
+  <div class="card">
+    <div class="push-up-right">
+      <a href="/logout">Log Out</a>
     </div>
-    <div class="columns small-12 option">
-      <a href="/invitables/list" class="option">Invitables</a><a href="/logout" class="option">Log Out</a>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="columns small-12 body">
+    <h1>My Account</h1>
+      <hr />
+         <h2>Invitable Account</h2>
+         <% if(user.local.email) { %>
+         <p>
+          <strong>E-mail</strong>: <%= user.local.email %><br /><br />
+          <a href="/changePassword" class="btn btn-info btn-lg">Change Password</a>&nbsp;&nbsp;
+          <a href="/unlink/local" class="btn btn-info btn-lg">Unlink Invitable Account</a>
+        </p>
 
-      <div class="columns small-12 large-8 medium-8">
-      My Account
-        <hr />
-           Invitable Account
-           <% if(user.local.email) { %>
-           <p>
-            <strong>E-mail</strong>: <%= user.local.email %><br /><br />
-            <a href="/changePassword" class="button">Change Password</a>&nbsp;&nbsp;
-            <a href="/unlink/local" class="button">Unlink Invitable Account</a>
+        <% } else { %>
+          <p>
+            You didn't create an account with your e-mail address.<br /><br />
+            <a href="/connect/local" class="btn btn-info btn-lg">Create an account</a>
           </p>
+        <% } %>
 
+          <h2>Facebook Account</h2>
+          <% if (user.facebook.token) { %>
+          <p>
+            You've connected the Facebook account with the e-mail <%= user.facebook.email %>.<br /><br />
+            <a href="/unlink/facebook" class="btn btn-info btn-lg">Unlink Facebook</a>
+          </p>
           <% } else { %>
-            <p>
-              You didn't create an account with your e-mail address.<br /><br />
-              <a href="/connect/local" class="button">Create an account</a>
-            </p>
-          <% } %>
-
-            Facebook Account
-            <% if (user.facebook.token) { %>
-            <p>
-              You've connected the Facebook account with the e-mail <%= user.facebook.email %>.<br /><br />
-              <a href="/unlink/facebook" class="button">Unlink Facebook</a>
-            </p>
-            <% } else { %>
-            <p>
-              You haven't connected a Facebook account.<br /><br />
-              <a href="/connect/facebook" class="button">Connect Facebook</a>
-            </p>
-                <% } %>
-
-      </div>
+          <p>
+            You haven't connected a Facebook account.<br /><br />
+            <a href="/connect/facebook" class="btn btn-info btn-lg">Connect Facebook</a>
+          </p>
+              <% } %>
   </div>
 </div>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/foundation/foundation.magellan.js"></script>
-    <script src="js/foundation/foundation.abide.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
 </body>
 </html>
