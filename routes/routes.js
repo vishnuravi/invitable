@@ -1,4 +1,4 @@
-var invitable=require('./invitableRoute.js');
+var invitable = require('./invitableRoute.js');
 
 module.exports = function(app, passport) {
 
@@ -19,6 +19,11 @@ module.exports = function(app, passport) {
 		failureFlash : true
 	}));
 
+	// forgot password
+	app.get('/forgotPassword', function(req, res){
+		res.render('forgotPassword.ejs', { user: req.user, message: req.flash('forgotPasswordMessage') });
+	});
+	
 	// show signup form
 	app.get('/signup', function(req, res) {
 		res.render('signup.ejs', { message: req.flash('signupMessage') });
