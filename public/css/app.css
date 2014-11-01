@@ -2,23 +2,27 @@ body {
 	font-family: 'Raleway', sans-serif;
 	color: #282828;
 	font-size: 1rem;
-	background: url('/img/train.jpeg') no-repeat center center fixed; 
+	background: url('/img/train.jpeg') no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	
+
 }
 
 html {
-	font-size: 0.8vw;
+	font-size: 1.0vw;
 }
 
 h1 {
-	font-size: 2.5rem;
+	font-size: 2.0rem;
 	font-family: 'Raleway', sans-serif;
 	color: #282828;
 	font-weight: 300;
+}
+
+p {
+	font-size: 1.5rem;
 }
 
 .head {
@@ -28,14 +32,14 @@ h1 {
 
 
 .option {
-	font-size: 1.6rem;
-	padding-left: 1.6rem;
-	padding-right: 1.6rem;
-	padding-bottom: 1rem;
+	font-size: 1.2rem;
+	padding-left: 1.2rem;
+	padding-right: 1.2rem;
+	padding-bottom: 0.8rem;
 }
 
 .body {
-	font-size: 3rem;
+	font-size: 2rem;
 	padding-top: 13vh;
 	padding-left: 23vw;
 	color: white;
@@ -45,7 +49,7 @@ h1 {
 
 input[type=submit] {
 	background-color: #0457C2;
-	font-size: 2.5rem;
+	font-size: 2.0rem;
 	border: none;
 	border-radius : 3px;
 	font-weight: 300;
@@ -62,7 +66,7 @@ b {color: #FF9E00; font-weight: 400;}
 
 .label {
 	color: white;
-	font-size: 1.5rem;
+	font-size: 1.0rem;
 	background-color: transparent;
 }
 
