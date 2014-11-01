@@ -71,8 +71,6 @@ exports.addUserToEvent = function(req,res){
 }
 
 exports.deleteSub = function(req, res){
-  // console.log(req.body.event_id);
-  // console.log(req.body.user_id);
   Subscribers.remove({name: req.body.user_id, invitable: req.body.event_id}).exec(function (err, subscription){
     (err ? res.send(err) : res.send("200"));
 
@@ -87,22 +85,18 @@ exports.deleteInvitable = function(req,res){
 
 exports.getInvitableSubs= function(req,res){
   Subscribers.find({invitable: req.params.event_name}).populate('name').populate('invitable','name').exec(function (err, subscription){
-    // console.log(err);
-    // console.log(subscription);
     var key;
     var f;
     for(key in subscription){
       if(subscription[key].name != null  ){
-        if(subscription[key].name.local != null  ){
+        if(subscription[key].name.local.password ){
           subscription[key].name.local.password = null;
-          subscription[key].name.facebook.token=null;
+        }
+        if(subscription[key].name.facebook.token){
+          subscription[key].name.facebook.token = null;
         }
       }
-      // console.log(subscription[key].name);
-
-
     }
     (err ? res.send(err) : res.send(subscription));
-
   })
 }
