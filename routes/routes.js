@@ -158,22 +158,22 @@ app.post('/resetPassword/:token', function(req, res) {
 	// for users that are already authenticated, we can connect additional accounts
 
 	// show local account creation page
-	app.get('/connect/local', function(req, res) {
+	app.get('/connect/local', isLoggedIn, function(req, res) {
     res.render('connect-local.ejs', { message: req.flash('loginMessage') });
   });
 
 	// attempt to connect local account, on error send back to local account creation page
-	app.post('/connect/local', passport.authenticate('local-signup', {
+	app.post('/connect/local', isLoggedIn, passport.authenticate('local-signup', {
     successRedirect : '/account',
     failureRedirect : '/connect/local',
     failureFlash : true
   }));
 
   // if user is connecting a facebook account, send to facebook to do the authentication
-  app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+  app.get('/connect/facebook', isLoggedIn, passport.authorize('facebook', { scope : 'email' }));
 
   // handle the callback after facebook has authorized the user
-  app.get('/connect/facebook/callback',
+  app.get('/connect/facebook/callback', isLoggedIn,
       passport.authorize('facebook', {
       successRedirect : '/account',
 			failureRedirect : '/'
@@ -182,7 +182,7 @@ app.post('/resetPassword/:token', function(req, res) {
 	// users can unlink connected accounts
 
 	// unlink the local account
-  app.get('/unlink/local', function(req, res) {
+  app.get('/unlink/local', isLoggedIn, function(req, res) {
       var user = req.user;
       user.local.email = undefined;
       user.local.password = undefined;
@@ -192,7 +192,7 @@ app.post('/resetPassword/:token', function(req, res) {
   });
 
   // unlink the facebook account
-  app.get('/unlink/facebook', function(req, res) {
+  app.get('/unlink/facebook', isLoggedIn, function(req, res) {
       var user = req.user;
       user.facebook.token = undefined;
       user.save(function(err) {
@@ -201,7 +201,7 @@ app.post('/resetPassword/:token', function(req, res) {
   });
 
 	// logout the user
-	app.get('/logout', function(req, res) {
+	app.get('/logout', isLoggedIn, function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});
