@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
 
 	// process login form
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile',
+		successRedirect : '/account',
 		failureRedirect : '/login',
 		failureFlash : true
 	}));
@@ -133,14 +133,14 @@ app.post('/resetPassword/:token', function(req, res) {
 
 	// process signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/profile',
+		successRedirect : '/account',
 		failureRedirect : '/signup',
 		failureFlash : true
 	}));
 
 	// show the user's profile
-	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('profile.ejs', {
+	app.get('/account', isLoggedIn, function(req, res){
+		res.render('account.ejs', {
 			user : req.user
 		});
 	})
@@ -151,10 +151,54 @@ app.post('/resetPassword/:token', function(req, res) {
 	// handle the callback after facebook has authenticated the user
 	app.get('/auth/facebook/callback',
 		passport.authenticate('facebook', {
-			successRedirect : '/profile',
+			successRedirect : '/account',
 			failureRedirect : '/'
 		}));
 
+	// for users that are already authenticated, we can connect additional accounts
+
+	// show local account creation page
+	app.get('/connect/local', function(req, res) {
+    res.render('connect-local.ejs', { message: req.flash('loginMessage') });
+  });
+
+	// attempt to connect local account, on error send back to local account creation page
+	app.post('/connect/local', passport.authenticate('local-signup', {
+    successRedirect : '/account',
+    failureRedirect : '/connect/local',
+    failureFlash : true
+  }));
+
+  // if user is connecting a facebook account, send to facebook to do the authentication
+  app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+
+  // handle the callback after facebook has authorized the user
+  app.get('/connect/facebook/callback',
+      passport.authorize('facebook', {
+      successRedirect : '/account',
+			failureRedirect : '/'
+  }));
+
+	// users can unlink connected accounts
+
+	// unlink the local account
+  app.get('/unlink/local', function(req, res) {
+      var user = req.user;
+      user.local.email = undefined;
+      user.local.password = undefined;
+      user.save(function(err) {
+          res.redirect('/account');
+      });
+  });
+
+  // unlink the facebook account
+  app.get('/unlink/facebook', function(req, res) {
+      var user = req.user;
+      user.facebook.token = undefined;
+      user.save(function(err) {
+          res.redirect('/account');
+      });
+  });
 
 	// logout the user
 	app.get('/logout', function(req, res) {
