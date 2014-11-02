@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var async = require('async');
 var bcrypt   = require('bcrypt-nodejs');
+var auth = require('../config/auth.js');
 
 
 module.exports = function(app, passport) {

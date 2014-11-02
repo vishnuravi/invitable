@@ -17,8 +17,10 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
+    displayName : String,  
     invitesGiven : { type: Number, default: 0 },
     invitesReceived : { type: Number, default: 0},
+    inviteRatio : { type: Number, default: 0 }, 
     admin : Boolean
 });
 
