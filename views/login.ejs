@@ -15,16 +15,22 @@
 	<div class="card">
 		<h2 class="underline">Login</h2>
 
-		<form id="loginForm" action="/login" method="post" class="form-auth form-group">
+		<form id="loginForm" action="/login" method="post" class="form-auth">
 			<fieldset>
 				<!-- Display Errors -->
 				<% if (message.length > 0) { %>
 					<div role="alert" class="alert alert-danger"><%= message %></div>
 				<% } %>
-				<input type="email" name="email" class="form-control" placeholder="E-mail Address">
-				<input type="password" name="password" class="form-control" placeholder="Password">
-				<button type="submit" class="btn btn-success btn-block btn-login">Login</button>
-			</fieldset>
+				<div class="form-group">
+					<input type="email" name="email" class="form-control" placeholder="E-mail Address"></input>
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" class="form-control" placeholder="Password"></input>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-block btn-login">Login</button>
+				</div>
+
 		</form>
 		<br>
 		<a href="/forgotPassword" class="forgotpwd">Forgot your password?</a>
