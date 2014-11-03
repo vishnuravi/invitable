@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Invitable - Log In</title>
 	<% include head.ejs %>
+	<script type="text/javascript" src="/js/login.js"></script>
 </head>
 
 <body>
@@ -14,7 +15,7 @@
 	<div class="card">
 		<h2 class="underline">Login</h2>
 
-		<form action="/login" method="post" class="form-auth">
+		<form id="loginForm" action="/login" method="post" class="form-auth form-group">
 			<fieldset>
 				<!-- Display Errors -->
 				<% if (message.length > 0) { %>

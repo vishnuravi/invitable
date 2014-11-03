@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Invitable - Signup</title>
 	<% include head.ejs %>
+	<script type="text/javascript" src="/js/signup.js"></script>
 </head>
 
 <body>
@@ -17,13 +18,11 @@
 		<% } %>
 		<h2 class="underline">Sign up</h2>
 
-		<form id="signup" action="/signup" method="post" data-abide class="form-auth">
-			<fieldset class="signup">
-				<input type="email" name="email" class="form-control" placeholder="E-mail Address">
-				<input type="password" name="password" class="form-control" placeholder="Password">
-				<input type="password" class="form-control" placeholder="Confirm Password">
-				<button type="submit" class="btn btn-info btn-block">Sign up</button>
-			</fieldset>
+		<form id="signupForm" action="/signup" method="post" data-abide class="form-auth form-group">
+					<input type="email" name="email" class="form-control" placeholder="E-mail Address">
+					<input type="password" name="password" class="form-control" placeholder="Password">
+					<input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+					<button type="submit" class="btn btn-info btn-block">Sign up</button>
 		</form>
 		<br>
 		<small>Already have an account? <a href="/login">Log in now</a></small>
