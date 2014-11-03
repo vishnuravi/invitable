@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $('#signupForm').bootstrapValidator({
+        container: 'popover',
     	feedbackIcons: {
+            required: 'glyphicon glyphicon-asterisk',
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
@@ -9,7 +11,10 @@ $(document).ready(function() {
             email: {
                 validators: {
                     emailAddress: {
-                        message: 'The value is not a valid email address.'
+                        message: 'Please enter a valid e-mail address.'
+                    },
+                    notEmpty: {
+                        message: 'An e-mail address is required.'
                     }
                 }
             },
@@ -17,15 +22,21 @@ $(document).ready(function() {
                 validators: {
                     identical: {
                         field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same.'
+                        message: 'The two password fields must be the same.'
+                    },
+                    notEmpty: {
+                        message: 'Please confirm the password.'
                     }
-                }
+                },
             },
             confirmPassword: {
                 validators: {
                     identical: {
                         field: 'password',
-                        message: 'The password and its confirm are not the same.'
+                        message: 'The two password fields must be the same.'
+                    },
+                    notEmpty: {
+                        message: 'Please enter a password.'
                     }
                 }
             }
