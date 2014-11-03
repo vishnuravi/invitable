@@ -1,8 +1,8 @@
 module.exports = {
 
 	'facebookAuth' : {
-		'clientID' : '1482314898717538',
-		'clientSecret' : '6717155be1d4eb64f34f733171a66553',
+		'clientID' : '',
+		'clientSecret' : '',
 		'callbackURL' 	: 'http://invitable.vishnu.io/auth/facebook/callback'
 	},
 
@@ -10,5 +10,11 @@ module.exports = {
 		'consumerKey' 		: '',
 		'consumerSecret' 	: '',
 		'callbackURL' 		: 'http://invitable.vishnu.io/auth/twitter/callback'
+	},
+
+	'mailgun' : {
+		'apiKey' : '',
+		'smtpUser'	:  '',
+		'password'	:  '',  
 	}
 };
