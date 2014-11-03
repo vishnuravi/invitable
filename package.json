@@ -24,6 +24,7 @@
     "ejs":"*",
 	  "gith":"*",
 	  "nodemailer":"*",
+    "nodemailer-mailgun-transport": "*",
     "async":"*",
     "crypto":"*"
   },
