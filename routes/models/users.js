@@ -8,6 +8,9 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
+        verifyToken : String,
+        verifyExpiry : Date,
+        isVerified  : { type: Boolean, default: false },
         resetPasswordToken  : String,
         resetPasswordExpiry : Date
     },
