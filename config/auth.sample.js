@@ -15,6 +15,7 @@ module.exports = {
 	'mailgun' : {
 		'apiKey' : '',
 		'smtpUser'	:  '',
-		'password'	:  '',  
+		'password'	:  '',
+		'domain' : 'invitable.vishnu.io'  
 	}
 };

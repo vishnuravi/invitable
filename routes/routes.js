@@ -12,7 +12,7 @@ var mailgun = require('nodemailer-mailgun-transport');
 var mgAuth =  {
   auth: {
     api_key: auth.mailgun.apiKey,
-    domain: 'invitable.vishnu.io'
+    domain: auth.mailgun.domain
   }
 }
 var nodemailerMailgun = nodemailer.createTransport(mailgun(mgAuth));
@@ -85,6 +85,7 @@ module.exports = function(app, passport) {
   });
 });
 
+
 // reset password
 app.get('/resetPassword/:token', function(req, res) {
   User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpiry': { $gt: Date.now() } }, function(err, user) {
@@ -119,7 +120,6 @@ app.post('/resetPassword/:token', function(req, res) {
       });
     },
     function(user, done) {
-      var smtpTransport = nodemailer.createTransport();
       var mailOptions = {
         to: user.local.email,
         from: 'invitable@vishnu.io',
