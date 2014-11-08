@@ -37,6 +37,11 @@ module.exports = function(app, passport) {
 		failureFlash : true
 	}));
 
+  // change password
+  app.get('/changePassword', function(req, res){
+    res.render('changePassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
+  });
+
 	// forgot password
 	app.get('/forgotPassword', function(req, res){
 		res.render('forgotPassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
