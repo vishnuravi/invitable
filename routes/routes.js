@@ -1,9 +1,21 @@
 var invitable = require('./invitableRoute.js');
 var User = require('./models/users');
 var crypto = require('crypto');
-var nodemailer = require('nodemailer');
 var async = require('async');
 var bcrypt   = require('bcrypt-nodejs');
+var auth = require('../config/auth');
+
+
+//set up nodemailer to send e-mails
+var nodemailer = require('nodemailer');
+var mailgun = require('nodemailer-mailgun-transport');
+var mgAuth =  {
+  auth: {
+    api_key: auth.mailgun.apiKey,
+    domain: auth.mailgun.domain
+  }
+}
+var nodemailerMailgun = nodemailer.createTransport(mailgun(mgAuth));
 
 
 module.exports = function(app, passport) {
@@ -24,6 +36,11 @@ module.exports = function(app, passport) {
 		failureRedirect : '/login',
 		failureFlash : true
 	}));
+
+  // change password
+  app.get('/changePassword', function(req, res){
+    res.render('changePassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
+  });
 
 	// forgot password
 	app.get('/forgotPassword', function(req, res){
@@ -54,16 +71,15 @@ module.exports = function(app, passport) {
       });
     },
     function(token, user, done) {
-      var smtpTransport = nodemailer.createTransport();
       var mailOptions = {
         to: user.local.email,
-        from: 'invitable@vishnu.io',
+        from: 'postmaster@invitable.vishnu.io',
         subject: 'Invitable Password Reset',
         text: 'Hi! Someone asked for your Invitable account password to be reset.\n\n' +
           'If it wasn\'t you please ignore this message. If it was you, please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://' + req.headers.host + '/resetPassword/' + token + '\n\n'
       };
-      smtpTransport.sendMail(mailOptions, function(err) {
+      nodemailerMailgun.sendMail(mailOptions, function(err) {
         req.flash('info', 'E-mail sent to ' + user.local.email);
         done(err, 'done');
       });
@@ -73,6 +89,7 @@ module.exports = function(app, passport) {
     res.redirect('/forgotPassword');
   });
 });
+
 
 // reset password
 app.get('/resetPassword/:token', function(req, res) {
@@ -108,7 +125,6 @@ app.post('/resetPassword/:token', function(req, res) {
       });
     },
     function(user, done) {
-      var smtpTransport = nodemailer.createTransport();
       var mailOptions = {
         to: user.local.email,
         from: 'invitable@vishnu.io',
@@ -116,7 +132,7 @@ app.post('/resetPassword/:token', function(req, res) {
         text: 'Hello,\n\n' +
           'The password for your account on Invitable with the email - ' + user.local.email + ' - has just been changed.\n'
       };
-      smtpTransport.sendMail(mailOptions, function(err) {
+      nodemailerMailgun.sendMail(mailOptions, function(err) {
         req.flash('info', 'Your Invitable password has been changed!');
         done(err);
       });
@@ -125,7 +141,12 @@ app.post('/resetPassword/:token', function(req, res) {
     res.redirect('/login');
   });
 });
-
+	// Find Invites
+	app.get('/invites', isLoggedIn, function(req, res) {
+		res.render('invites.ejs', {
+			user : req.user
+		});
+	});
 	// show signup form
 	app.get('/signup', function(req, res) {
 		res.render('signup.ejs', { message: req.flash('signupMessage') });

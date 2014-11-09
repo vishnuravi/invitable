@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Invitable - Log In</title>
 	<% include head.ejs %>
+	<script type="text/javascript" src="/js/login.js"></script>
 </head>
 
 <body>
@@ -12,18 +13,24 @@
 
 <div class="card-container">
 	<div class="card">
-		<!-- Display Errors -->
-		<% if (message.length > 0) { %>
-			<div data-alert class="alert-box warning"><%= message %></div>
-		<% } %>
 		<h2 class="underline">Login</h2>
 
-		<form action="/login" method="post" data-abide class="form-auth">
+		<form id="loginForm" action="/login" method="post" class="form-auth">
 			<fieldset>
-				<input type="email" name="email" class="form-control" placeholder="E-mail address">
-				<input type="password" name="password" class="form-control" placeholder="Password">
-				<button type="submit" class="btn btn-success btn-block btn-login">Login</button>
-			</fieldset>
+				<!-- Display Errors -->
+				<% if (message.length > 0) { %>
+					<div role="alert" class="alert alert-danger"><%= message %></div>
+				<% } %>
+				<div class="form-group">
+					<input type="email" name="email" class="form-control" placeholder="E-mail Address"></input>
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" class="form-control" placeholder="Password"></input>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-block btn-login">Login</button>
+				</div>
+
 		</form>
 		<br>
 		<a href="/forgotPassword" class="forgotpwd">Forgot your password?</a>

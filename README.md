@@ -3,8 +3,8 @@ invitable
 An invitation queue service.
 
 #What is invitable?
-Invitable is an invitation queue that will allow users to create an account then opt-into a queue for an invite only service (including betas/alphas).
-Users with extra invites will then be allowed to give up their invites!  
+Invitable is an invitation queue that will allow users to create an account then opt-into a queue for an invite only service (including betas/alphas). 
+Users who have spare invites can share them with those in the queues!!!
 
 #To run
 ```

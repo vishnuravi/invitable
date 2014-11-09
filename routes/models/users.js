@@ -8,6 +8,9 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
+        verifyToken : String,
+        verifyExpiry : Date,
+        isVerified  : { type: Boolean, default: false },
         resetPasswordToken  : String,
         resetPasswordExpiry : Date
     },
@@ -17,8 +20,10 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
+    displayName : String,  
     invitesGiven : { type: Number, default: 0 },
     invitesReceived : { type: Number, default: 0},
+    inviteRatio : { type: Number, default: 0 }, 
     admin : Boolean
 });
 

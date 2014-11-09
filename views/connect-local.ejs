@@ -1,67 +1,43 @@
 <!DOCTYPE html>
 <head>
-
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="/css/foundation.css">
-	<link rel="stylesheet" href="/css/app.css">
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
 	<title>Invitable - Create an Invitable Account</title>
-
+	<% include head.ejs %>
+	<script type="text/javascript" src="/js/connect-local.js"></script>
 </head>
 
 <body>
 
-<div class="row">
-	<div class="columns small-12 head">
-		<div class="columns small-12">
-			<h1>Invitable</h1>
-		</div>
-		<div class="columns small-12 option">
-			<a href="/invitables/list" class="option">Invitables</a>
-			<a href="/account" class="option">My Account</a>
-			<a href="/signup" class="option">Log Out</a>
-		</div>
+<h1 class="logo"><a href="/">Invitable</a></h1>
+<div class="card-container">
+	<div class="card">
+		<!-- Display Errors -->
+		<% if (message.length > 0) { %>
+			<div data-alert class="alert-box warning"><%= message %></div>
+		<% } %>
+		<h2 class="underline">Create an Invitable Account</h2>
+
+		<form id="connect-localForm" action="/connect/local" method="post" class="form-auth">
+
+			<div class="form-group">
+				<input type="email" name="email" class="form-control" placeholder="E-mail Address"></input>
+			</div>
+
+			<div class="form-group">
+				<input type="password" name="password" class="form-control" placeholder="Password"></input>
+			</div>
+				
+			<div class="form-group">
+				<input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password"></input>
+			</div>
+			
+			<div class="form-group">	
+				<button type="submit" class="btn btn-info btn-block">Create Account</button>
+			</div>
+			
+		</form>
 	</div>
 </div>
-<div class="row">
-	<div class="columns small-12 body">
-
-		<!-- display messages that are sent back from authentication -->
-
-
-		<div class="columns small-12 large-8 medium-8">
-			<% if (message.length > 0) { %>
-        	<div data-alert class="alert-box warning"><%= message %></div>
-    		<% } %>
-
-			Create an Invitable Account
-			<form id="signup" action="/connect/local" method="post" data-abide>
-				<fieldset class="signup">
-				<input type="email" name="email" class="form-control" placeholder="E-mail Address" required>
-				<small class="error">An email address is required.</small>
-				<input type="password" name="password" class="form-control" placeholder="Password">
-				<input type="password" class="form-control" data-equalto="password" placeholder="Confirm Password">
-				<small class="error">The passwords must match.</small>
-				<button type="submit" class="btn btn-warning btn-lg">Create Account</button>
-			</fieldset>
-			</form>
-			<p class="label">
-				Return to <a href="/">your account</a>.
-			</p>
-		</div>
-	</div>
-</div>
-		<script src="/js/vendor/jquery.js"></script>
-		<script src="/js/foundation.min.js"></script>
-		<script src="/js/foundation/foundation.magellan.js"></script>
-		<script src="/js/foundation/foundation.abide.js"></script>
-		<script src="/js/jquery.stellar.min.js"></script>
-		<script src="/js/modernizr.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
 </body>
 </html>
