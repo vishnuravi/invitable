@@ -141,7 +141,12 @@ app.post('/resetPassword/:token', function(req, res) {
     res.redirect('/login');
   });
 });
-
+	// Find Invites
+	app.get('/invites', isLoggedIn, function(req, res) {
+		res.render('invites.ejs', {
+			user : req.user
+		});
+	});
 	// show signup form
 	app.get('/signup', function(req, res) {
 		res.render('signup.ejs', { message: req.flash('signupMessage') });
