@@ -147,6 +147,11 @@ app.post('/resetPassword/:token', function(req, res) {
 			user : req.user
 		});
 	});
+	app.get('/submit', isLoggedIn, function(req, res) {
+		res.render('submit.ejs', {
+			user : req.user
+		});
+	});	
 	// show signup form
 	app.get('/signup', function(req, res) {
 		res.render('signup.ejs', { message: req.flash('signupMessage') });
