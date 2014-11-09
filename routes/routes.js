@@ -219,7 +219,7 @@ app.post('/resetPassword/:token', function(req, res) {
 	app.post('/invitables/delete', invitable.deleteInvitable); // delete an invitable
 	app.get('/user/increment/sends/:user_name'); // increment invites sent
 	app.get('/user/increment/receives/:user_name') // increment invites received
-	app.post('/subscriber/send'); // send an invite to a subscriber
+	app.post('/subscriber/send', invitable.sendEmail); // send an invite to a subscriber
 };
 
 // route middleware to see if a user is logged in
