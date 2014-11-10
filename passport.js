@@ -1,5 +1,4 @@
 // passport authentication code
-
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -8,6 +7,9 @@ var User = require('./routes/models/users');
 
 //load the API keys
 var configAuth = require('./config/auth');
+
+//load validator
+var validator = require('validator');
 
 module.exports = function(passport) {
 

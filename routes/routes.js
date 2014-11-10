@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var async = require('async');
 var bcrypt   = require('bcrypt-nodejs');
 var auth = require('../config/auth');
+var validator = require('validator');
 
 
 //set up nodemailer to send e-mails
@@ -121,7 +122,7 @@ app.post('/resetPassword/:token', function(req, res) {
           return res.redirect('back');
         }
 
-        user.local.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
+        user.local.password = user.generateHash(req.body.password);
         user.local.resetPasswordToken = undefined;
         user.local.resetPasswordExpiry = undefined;
 

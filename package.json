@@ -27,7 +27,8 @@
     "mailgun-js":"*",
     "nodemailer-mailgun-transport": "*",
     "async":"*",
-    "crypto":"*"
+    "crypto":"*",
+    "validator":"*"
   },
   "repository" : {
     "type" : "git",
