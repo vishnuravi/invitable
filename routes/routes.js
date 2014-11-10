@@ -42,6 +42,14 @@ module.exports = function(app, passport) {
     res.render('changePassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
   });
 
+  app.post('/changePassword', function(req, res){
+    var user = req.user;
+    user.local.password = user.generateHash(req.body.newPassword);
+    user.save(function(err) {
+      res.redirect('/account');
+      }); 
+  });
+
 	// forgot password
 	app.get('/forgotPassword', function(req, res){
 		res.render('forgotPassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
