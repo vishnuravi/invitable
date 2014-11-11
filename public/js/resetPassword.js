@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#signupForm')
+    $('#resetPasswordForm')
       .on('init.field.bv', function(e, data) {
             var $parent    = data.element.parents('.form-group'),
                 $icon      = $parent.find('.form-control-feedback[data-bv-icon-for="' + data.field + '"]'),
@@ -32,22 +32,22 @@ $(document).ready(function() {
             password: {
                 validators: {
                     identical: {
-                        field: 'password',
+                        field: 'confirmPassword',
                         message: 'The two password fields must be the same.'
                     },
                     notEmpty: {
-                        message: 'Please enter a password.'
+                        message: 'Please confirm the password.'
                     }
                 },
             },
             confirmPassword: {
                 validators: {
                     identical: {
-                        field: 'confirmPassword',
+                        field: 'password',
                         message: 'The two password fields must be the same.'
                     },
                     notEmpty: {
-                        message: 'Please confirm the password.'
+                        message: 'Please enter a password.'
                     }
                 }
             }

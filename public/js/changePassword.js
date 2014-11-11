@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#signupForm')
+    $('#changePasswordForm')
       .on('init.field.bv', function(e, data) {
             var $parent    = data.element.parents('.form-group'),
                 $icon      = $parent.find('.form-control-feedback[data-bv-icon-for="' + data.field + '"]'),
@@ -19,27 +19,6 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            email: {
-                validators: {
-                    emailAddress: {
-                        message: 'Please enter a valid e-mail address.'
-                    },
-                    notEmpty: {
-                        message: 'An e-mail address is required.'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    identical: {
-                        field: 'password',
-                        message: 'The two password fields must be the same.'
-                    },
-                    notEmpty: {
-                        message: 'Please enter a password.'
-                    }
-                },
-            },
             confirmPassword: {
                 validators: {
                     identical: {
@@ -48,6 +27,17 @@ $(document).ready(function() {
                     },
                     notEmpty: {
                         message: 'Please confirm the password.'
+                    }
+                },
+            },
+            newPassword: {
+                validators: {
+                    identical: {
+                        field: 'password',
+                        message: 'The two password fields must be the same.'
+                    },
+                    notEmpty: {
+                        message: 'Please enter a password.'
                     }
                 }
             }
