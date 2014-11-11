@@ -34,6 +34,10 @@ module.exports = function(passport) {
     },
     function(req, email, password, done) {
 
+    // check to see if a valid email address was submitted
+    if(!validator.isEmail(email)){
+        return done(null, false, req.flash('signupMessage', 'The e-mail address you entered is not valid.'));
+    }else{
         // check to see if a user already exists with that email
         User.findOne({ 'local.email' :  email }, function(err, user) {
             if (err)
@@ -59,6 +63,7 @@ module.exports = function(passport) {
             }
 
         });
+    }
 
     }));
 

@@ -47,10 +47,17 @@ module.exports = function(app, passport) {
 
     var user = req.user;
 
-    user.local.password = user.generateHash(req.body.newPassword);
-    user.save(function(err) {
-      res.redirect('/account');
+    // first, check if the old password entered is correct
+    if(!user.validPassword(req.body.oldPassword)){
+      req.flash('error', 'Your old password wasn\'t correct');
+      res.redirect('/changePassword');
+    }else{
+      // change the password
+      user.local.password = user.generateHash(req.body.newPassword);
+      user.save(function(err) {
+        res.redirect('/account');
       }); 
+    }
 
   });
 
@@ -268,5 +275,6 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	// else, send them to the login page
+  req.flash('loginMessage', 'Please login to access this.');
 	res.redirect('/login');
 }
