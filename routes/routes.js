@@ -39,16 +39,19 @@ module.exports = function(app, passport) {
 	}));
 
   // change password
-  app.get('/changePassword', function(req, res){
+  app.get('/changePassword', isLoggedIn, function(req, res){
     res.render('changePassword.ejs', { user: req.user, message: req.flash('info'), error: req.flash('error') });
   });
 
-  app.post('/changePassword', function(req, res){
+  app.post('/changePassword', isLoggedIn, function(req, res){
+
     var user = req.user;
+
     user.local.password = user.generateHash(req.body.newPassword);
     user.save(function(err) {
       res.redirect('/account');
       }); 
+
   });
 
 	// forgot password
@@ -264,6 +267,6 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	// else, send them to home page
-	res.redirect('/');
+	// else, send them to the login page
+	res.redirect('/login');
 }
