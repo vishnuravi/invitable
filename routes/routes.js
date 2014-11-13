@@ -109,7 +109,6 @@ module.exports = function(app, passport) {
   });
 });
 
-
 // reset password
 app.get('/resetPassword/:token', function(req, res) {
   User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpiry': { $gt: Date.now() } }, function(err, user) {
@@ -160,8 +159,9 @@ app.post('/resetPassword/:token', function(req, res) {
     res.redirect('/login');
   });
 });
+
 	// Find Invites
-	app.get('/invites', isLoggedIn, function(req, res) {
+  app.get('/invites', isLoggedIn, function(req, res) {
 		res.render('invites.ejs', {
 			user : req.user
 		});
@@ -171,6 +171,7 @@ app.post('/resetPassword/:token', function(req, res) {
 			user : req.user
 		});
 	});	
+
 	// show signup form
 	app.get('/signup', function(req, res) {
 		res.render('signup.ejs', { message: req.flash('signupMessage') });
@@ -188,7 +189,14 @@ app.post('/resetPassword/:token', function(req, res) {
 		res.render('account.ejs', {
 			user : req.user
 		});
-	})
+	});
+
+  // show leaderboard
+  app.get('/leaderboard', isLoggedIn, function(req, res){
+    res.render('leaderboard.ejs', {
+      user : req.user
+    });
+  });
 
 	// go to facebook to authenticate the user
 	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
