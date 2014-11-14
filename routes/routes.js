@@ -109,7 +109,23 @@ module.exports = function(app, passport) {
   });
 });
 
-
+// verify account
+app.get('/verify/:token', function(req, res){
+  User.findOne({'local.verifyToken': req.params.token, 'local.verifyExpiry': { $gt: Date.now() } }, function(err, user){
+    if(!user){
+      req.flash('loginMessage', 'The verification link is expired or invalid.');
+    }else{
+      user.local.isVerified = true;
+      user.local.verifyToken = undefined;
+      user.local.verifyExpiry = undefined;
+      user.save(function(err){
+        if (err) throw err;
+      });
+      req.flash('loginMessage', 'Your account was verified successfully! Please login.');
+    }
+    return res.redirect('/login');
+  });
+});
 
 
 // reset password
