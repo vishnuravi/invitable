@@ -92,7 +92,7 @@ module.exports = function(app, passport) {
     function(token, user, done) {
       var mailOptions = {
         to: user.local.email,
-        from: 'postmaster@invitable.vishnu.io',
+        from: 'invitable@vishnu.io',
         subject: 'Invitable Password Reset',
         text: 'Hi! Someone asked for your Invitable account password to be reset.\n\n' +
           'If it wasn\'t you please ignore this message. If it was you, please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -108,6 +108,9 @@ module.exports = function(app, passport) {
     res.redirect('/forgotPassword');
   });
 });
+
+
+
 
 // reset password
 app.get('/resetPassword/:token', function(req, res) {
@@ -186,16 +189,12 @@ app.post('/resetPassword/:token', function(req, res) {
 
 	// show the user's profile
 	app.get('/account', isLoggedIn, function(req, res){
-		res.render('account.ejs', {
-			user : req.user
-		});
+		res.render('account.ejs', { user : req.user });
 	});
 
   // show leaderboard
   app.get('/leaderboard', isLoggedIn, function(req, res){
-    res.render('leaderboard.ejs', {
-      user : req.user
-    });
+    res.render('leaderboard.ejs', { user : req.user });
   });
 
 	// go to facebook to authenticate the user

@@ -6,10 +6,23 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('./routes/models/users');
 
 //load the API keys
-var configAuth = require('./config/auth');
+var auth = require('./config/auth');
 
-//load validator
+//load dependencies
 var validator = require('validator');
+var crypto = require('crypto');
+
+//set up nodemailer to send e-mails
+var nodemailer = require('nodemailer');
+var mailgun = require('nodemailer-mailgun-transport');
+var mgAuth =  {
+  auth: {
+    api_key: auth.mailgun.apiKey,
+    domain: auth.mailgun.domain
+  }
+}
+var nodemailerMailgun = nodemailer.createTransport(mailgun(mgAuth));
+
 
 module.exports = function(passport) {
 
@@ -49,17 +62,44 @@ module.exports = function(passport) {
             } else {
 
                 // if no user exists with that email, create a new one
-                var newUser = new User();
-                newUser.local.email    = email;
-                newUser.local.password = newUser.generateHash(password); 
                 
+                // generate verification token
+                crypto.randomBytes(20, function(err, buf){
+                    
+                    var token = buf.toString('hex');
+                    
+                    // create a new user and set details
+                    var newUser = new User();
+                    newUser.local.email    = email;
+                    newUser.local.password = newUser.generateHash(password); 
+                    newUser.local.verifyToken = token;
+                    newUser.local.verifyExpiry = Date.now() + 172800000; // verification tokens expire in 48 hours
+                    
+                    // create an email with verify link
+                    var mailOptions = {
+                        to: newUser.local.email,
+                        from: 'invitable@vishnu.io',
+                        subject: 'Activate your Invitable Account',
+                        text: 'Hello,\n\n' +
+                        'Click the link below (or paste it into your browser) to verify your Invitable account. This link will expire in 48 hours.\n\n' +
+                        'http://' + req.headers.host + '/verify/' + token + '\n\n'
+    
+                    };
 
-                // save user to database
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
+                    // send verify email using mailgun 
+                    nodemailerMailgun.sendMail(mailOptions, function(err) {
+                        if (err)
+                            throw err;
+                        // save user to database
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+                    });
+
                 });
+                
             }
 
         });
@@ -100,9 +140,9 @@ module.exports = function(passport) {
     //Facebook authentication code
     passport.use(new FacebookStrategy({
 
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
+        clientID        : auth.facebookAuth.clientID,
+        clientSecret    : auth.facebookAuth.clientSecret,
+        callbackURL     : auth.facebookAuth.callbackURL,
         passReqToCallback : true
 
     },
