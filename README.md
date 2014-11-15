@@ -3,7 +3,7 @@ invitable
 An invitation queue service.
 
 #What is invitable?
-Invitable is an invitation queue that will allow users to create an account then opt-into a queue for an invite only service (including betas/alphas). 
+Invitable is an invitation queue that will allow users to create an account then opt-into a queue for an invite only service (including betas/alphas).
 Users who have spare invites can share them with those in the queues!!!
 
 #To run
@@ -23,8 +23,8 @@ $ node app.js
 |/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|
 |/subscriber/invitables/:user_name|GET|Gets all users subscribed to an invitable|
 |/subscriber/users/:event_name|GET|Gets all invitables a user is subscribed to|
-|/user/increment/sends/:user_name|GET| increment invites sent|
-|/user/increment/receives/:user_name|GET| increment invites received|
+|/user/increment/sends/:_id|GET| increment invites sent|
+|/user/increment/receives/:_id|GET| increment invites received|
 |/subscriber/send|POST|Sends a user an invite|
 
 
