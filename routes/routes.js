@@ -285,9 +285,9 @@ app.post('/resetPassword/:token', function(req, res) {
 	app.get('/subscriber/users/:event_name', invitable.getInvitableSubs)// get all users in a queue
 	app.post('/subscriber/delete', invitable.deleteSub); // delete a subscriber
 	app.post('/invitables/delete', invitable.deleteInvitable); // delete an invitable
-	app.get('/user/increment/sends/:_id', invitable.incSend); // increment invites sent
-	app.get('/user/increment/receives/:_id', invitable.incRec) // increment invites received
-	app.post('/subscriber/send', invitable.sendEmail); // send an invite to a subscriber
+	app.get('/user/increment/sends/:_id'); // increment invites sent
+	app.get('/user/increment/receives/:_id') // increment invites received
+  app.post('/subscriber/send', invitable.sendEmail); // send an invite to a subscriber
 };
 
 // route middleware to see if a user is logged in

@@ -82,7 +82,7 @@ exports.deleteInvitable = function(req,res){
 }
 
 exports.getInvitableSubs= function(req,res){
-  Subscribers.find({invitable: req.params.event_name}).populate('name').populate('invitable','name').exec(function (err, subscription){
+  Subscribers.find({invitable: req.params.event_name}).populate('name').populate('invitable','name').sort({name: 1}).exec(function (err, subscription){
     var key;
     var f;
     for(key in subscription){
