@@ -104,6 +104,7 @@ exports.incSend = function(req,res){
   Users.findById(req.params._id).exec(function (err, user){
     if(err) return handleError(err);
     user.invitesGiven = ++user.invitesGiven;
+    user.inviteRatio = user.invitesGiven/user.invitesReceived;
     user.save(function(err){
       (err ? res.send(err) : res.send(user));
     })
@@ -115,6 +116,7 @@ exports.incRec = function(req,res){
   Users.findById(req.params._id).exec(function (err, user){
     if(err) return handleError(err);
     user.invitesReceived = ++user.invitesReceived;
+    user.inviteRatio = user.invitesGiven/user.invitesReceived;
     user.save(function(err){
       (err ? res.send(err) : res.send(user));
     })
