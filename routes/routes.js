@@ -56,7 +56,7 @@ module.exports = function(app, passport) {
       user.local.password = user.generateHash(req.body.newPassword);
       user.save(function(err) {
         res.redirect('/account');
-      }); 
+      });
     }
 
   });
@@ -189,7 +189,7 @@ app.post('/resetPassword/:token', function(req, res) {
 		res.render('submit.ejs', {
 			user : req.user
 		});
-	});	
+	});
 
 	// show signup form
 	app.get('/signup', function(req, res) {
@@ -285,8 +285,8 @@ app.post('/resetPassword/:token', function(req, res) {
 	app.get('/subscriber/users/:event_name', invitable.getInvitableSubs)// get all users in a queue
 	app.post('/subscriber/delete', invitable.deleteSub); // delete a subscriber
 	app.post('/invitables/delete', invitable.deleteInvitable); // delete an invitable
-	app.get('/user/increment/sends/:user_name'); // increment invites sent
-	app.get('/user/increment/receives/:user_name') // increment invites received
+	app.get('/user/increment/sends/:_id', invitable.incSend); // increment invites sent
+	app.get('/user/increment/receives/:_id', invitable.incRec) // increment invites received
 	app.post('/subscriber/send', invitable.sendEmail); // send an invite to a subscriber
 };
 

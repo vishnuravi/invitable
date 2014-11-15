@@ -1,5 +1,6 @@
 var Invitables = require('./models/invitable');
 var Subscribers = require('./models/subscriber');
+var Users = require('./models/users');
 
 exports.create = function(req,res){
   var event = new Invitables(
@@ -95,6 +96,28 @@ exports.getInvitableSubs= function(req,res){
       }
     }
     (err ? res.send(err) : res.send(subscription));
+  })
+}
+
+exports.incSend = function(req,res){
+  // req.params.user_name
+  Users.findById(req.params._id).exec(function (err, user){
+    if(err) return handleError(err);
+    user.invitesGiven = ++user.invitesGiven;
+    user.save(function(err){
+      (err ? res.send(err) : res.send(user));
+    })
+
+  })
+
+}
+exports.incRec = function(req,res){
+  Users.findById(req.params._id).exec(function (err, user){
+    if(err) return handleError(err);
+    user.invitesReceived = ++user.invitesReceived;
+    user.save(function(err){
+      (err ? res.send(err) : res.send(user));
+    })
   })
 }
 
