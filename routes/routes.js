@@ -1,10 +1,13 @@
 var invitable = require('./invitableRoute.js');
+var subRoute = require('./subRoute.js');
 var User = require('./models/users');
 var crypto = require('crypto');
 var async = require('async');
 var bcrypt   = require('bcrypt-nodejs');
 var auth = require('../config/auth');
 var validator = require('validator');
+var q = require('q');
+
 
 
 //set up nodemailer to send e-mails
@@ -287,7 +290,7 @@ app.post('/resetPassword/:token', function(req, res) {
 	app.post('/invitables/delete', invitable.deleteInvitable); // delete an invitable
 	app.get('/user/increment/sends/:_id'); // increment invites sent
 	app.get('/user/increment/receives/:_id') // increment invites received
-  app.post('/subscriber/send', invitable.sendEmail); // send an invite to a subscriber
+  app.post('/subscriber/send', subRoute.sendEmail); // send an invite to a subscriber
 };
 
 // route middleware to see if a user is logged in

@@ -28,7 +28,8 @@
     "nodemailer-mailgun-transport": "*",
     "async":"*",
     "crypto":"*",
-    "validator":"*"
+    "validator":"*",
+    "q" : "1.0.0"
   },
   "repository" : {
     "type" : "git",

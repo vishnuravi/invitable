@@ -1,6 +1,7 @@
 var Invitables = require('./models/invitable');
 var Subscribers = require('./models/subscriber');
 var Users = require('./models/users');
+var Q = require('q');
 
 exports.create = function(req,res){
   var event = new Invitables(
@@ -121,10 +122,4 @@ exports.incRec = function(req,res){
       (err ? res.send(err) : res.send(user));
     })
   })
-}
-
-exports.sendEmail = function(req,res){
-  /**
-  smtp stuff pls
-  **/
 }

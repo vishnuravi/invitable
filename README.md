@@ -13,19 +13,20 @@ $ node app.js
 > invitable is now running
 ```
 #API Endpoints
-| Route|Rquest Method  | Description |
-| ----|--------- | ------------- |
-|/invitables|POST | Create a new invitable |
-|/invitables|GET |Lists all invitables |
-|/invitables/delete|POST|Deletes an invitable|
-|/subscriber/delete|POST|Deletes a subscriber|
-|/invitables/:event_id|GET |Gets a single event by event id|
-|/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|
-|/subscriber/invitables/:user_name|GET|Gets all users subscribed to an invitable|
-|/subscriber/users/:event_name|GET|Gets all invitables a user is subscribed to|
-|/user/increment/sends/:_id|GET| increment invites sent|
-|/user/increment/receives/:_id|GET| increment invites received|
-|/subscriber/send|POST|Sends a user an invite|
+| Route | Request Method  | Description | Params |
+| ----|--------- | ------------- |------------|
+|/invitables|POST | Create a new invitable | name, url, about, email, creation (in epoch), sendable |
+|/invitables|GET |Lists all invitables | none |
+|/invitables/delete|POST|Deletes an invitable| invitable _id|
+|/subscriber/delete|POST|Deletes a subscriber|user _id and invitable _id|
+|/invitables/:event_id|GET |Gets a single event by event id|invitable _id|
+|/invitables/:event_id/:user_name|GET |Adds a single user to an event queue|user _id|
+|/subscriber/invitables/:user_name|GET|Gets all users subscribed to an invitable|user _id|
+|/subscriber/users/:event_name|GET|Gets all invitables a user is subscribed to|invitable _id|
+|/user/increment/sends/:_id|GET| increment invites sent| users _id|
+|/user/increment/receives/:_id|GET| increment invites received| users _id|
+|/subscriber/send|POST|Sends a user an invite|sender, receiver, inviteCode, service|
+
 
 
 #Contributing
